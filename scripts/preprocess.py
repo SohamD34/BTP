@@ -1,22 +1,18 @@
-import pandas as pd 
+import os
+import sys
+os.chdir('/home/raid/Desktop/Soham/BTP/')
+sys.path.append(os.getcwd())
 
-data = pd.read_excel('../data/CFU per mL Analyte1_analyte2_analyte3_Sensor1_Sensor2_Sensor3.xlsx')
+from utils.preprocessing import slice_datasets, drop_columns, rename_columns
+import pandas as pd
 
-# We have 10 points of Analyte1 data, Analyte2 data and Analyte3 data respectively.
 
-data = data.drop(['Unnamed: 4', 'Unnamed: 8'], axis=1)
+data = pd.read_excel('data/CFU per mL Analyte1_analyte2_analyte3_Sensor1_Sensor2_Sensor3.xlsx')
 
-analyte1 = data.iloc[1:11, :]
-analyte2 = data.iloc[11:21, :]
-analyte3 = data.iloc[21:31, :]
+analyte_1, analyte_2, analyte_3 = slice_datasets(data)
+[analyte_1, analyte_2, analyte_3] = drop_columns([analyte_1, analyte_2, analyte_3])
+[analyte_1, analyte_2, analyte_3] = rename_columns([analyte_1, analyte_2, analyte_3])
 
-# Extracting the data for each analyte and sensor combination into separate CSV files.
-
-analyte1_data = analyte1.drop(['Analyte2_sensor1', 'Analyte2_sensor2', 'Analyte2_sensor3', 'Analyte3_Sensor1', 'Analyte3_Sensor2', 'Analyte3_Sensor3'], axis=1)
-analyte1_data.to_csv('../data/Analyte1.csv', index=False)
-
-analyte2_data = analyte2.drop(['Analyte1_Sensor1', 'Analyte1_Sensor2', 'Analyte1_Sensor3', 'Analyte3_Sensor1', 'Analyte3_Sensor2', 'Analyte3_Sensor3'], axis=1)
-analyte2_data.to_csv('../data/Analyte2.csv', index=False)
-
-analyte3_data = analyte3.drop(['Analyte1_Sensor1', 'Analyte1_Sensor2', 'Analyte1_Sensor3', 'Analyte2_sensor1', 'Analyte2_sensor2', 'Analyte2_sensor3'], axis=1)
-analyte3_data.to_csv('../data/Analyte3.csv', index=False)
+analyte_1.to_csv('data/Analyte1.csv')
+analyte_2.to_csv('data/Analyte2.csv')
+analyte_3.to_csv('data/Analyte3.csv')
