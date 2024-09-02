@@ -36,3 +36,15 @@ def rename_columns(dfs: List[pd.DataFrame]) -> List[pd.DataFrame]:
             raise ValueError("The number of new column names does not match the number of columns in the DataFrame.")
     
     return dfs
+
+
+
+def log_transform(dfs: List[pd.DataFrame]) -> List[pd.DataFrame]:
+    ''' Log transform the CFU/mL column for each analyte data '''
+    
+    for df in dfs:
+        df['log_sensor1'] = np.log(abs(df['Sensor1']))
+        df['log_sensor2'] = np.log(abs(df['Sensor2']))
+        df['log_sensor3'] = np.log(abs(df['Sensor3']))
+    
+    return dfs

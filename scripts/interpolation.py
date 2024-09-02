@@ -1,5 +1,3 @@
-!pip install smogn
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -9,17 +7,17 @@ import smogn
 
 warnings.filterwarnings('ignore')
 
-data1 = pd.read_csv('/kaggle/input/btp-analyte-data/Analyte1.csv')
+data1 = pd.read_csv('data/Unsampled_Analyte1.csv')
 data1 = data1.drop(['Unnamed: 0'], axis=1)
 data1['log'] = np.log(data1['CFU/mL'])
 
 
-data2 = pd.read_csv('/kaggle/input/btp-analyte-data/Analyte2.csv')
+data2 = pd.read_csv('data/Unsampled_Analyte2.csv')
 data2 = data2.drop(['Unnamed: 0'], axis=1)
 data2['log'] = np.log(data2['CFU/mL'])
 
 
-data3 = pd.read_csv('/kaggle/input/btp-analyte-data/Analyte3.csv')
+data3 = pd.read_csv('data/Unsampled_Analyte3.csv')
 data3 = data3.drop(['Unnamed: 0'], axis=1)
 data3['log'] = np.log(data3['CFU/mL'])
 
@@ -77,6 +75,6 @@ for i in range(5):
     print(len(ext_data3))
     
 
-ext_data1.to_csv('../data/Analyte1.csv')
-ext_data2.to_csv('../data/Analyte2.csv')
-ext_data3.to_csv('../data/Analyte3.csv')
+ext_data1.to_csv('data/Analyte1.csv', index=False)
+ext_data2.to_csv('data/Analyte2.csv', index=False)
+ext_data3.to_csv('data/Analyte3.csv', index=False)
