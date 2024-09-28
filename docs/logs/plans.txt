@@ -7,12 +7,12 @@ ICA - experimental
 
 
 Todo -
-1. Add +- 5% error
-2. Apply PyCaret model on this for clustering
-3. Plot 3D - PCA1, PCA2 and No of days --- seperate graphs for each analyte
-4. 70-30 training and testing
-5. Use training + Mixture data for new testing for mixture (new notebook)
-6. Sensor 4 to be included in all the above
+1. Add +- 5% error                                                              //
+2. Apply PyCaret model on this for clustering                                   ?
+3. Plot 3D - PCA1, PCA2 and No of days --- seperate graphs for each analyte     --- Soham //
+4. 70-30 training and testing                                                   --- //
+5. Use training + Mixture data for new testing for mixture (new notebook)       --- No data for analyte1,2 -- only analyte 3
+6. Sensor 4 to be included in all the above                                     --- Nahi liya hai tumhare chutiya TAs ne
 
 
 Current data ratio --- 30:49:2.8
@@ -22,9 +22,11 @@ New data - 111, 112, 121 etc ratios
 
 '''' CURRENTLY - WE DO NOT HAVE TO WORK WITH SENSOR 4 DATA ''''' 
 
-HIghest conce - 10^-1 dilution ---> dilution = 1
+
+
+Highest conce - 10^-1 dilution ---> dilution = 1
 Lowest --- 10^-10 (10 cols) or 10^-8 (8 cols)  ----> dil = 10/8
 
+
+
 ''' Number of days ka data -- only for Analyte 3, not for 1,2 '''
-
-
