@@ -105,3 +105,8 @@ def plot_clusters(features, data, pca_features, path):
     plt.savefig(path)
 
     plt.show()
+
+
+def add_noise(data, error_percentage=0.05):
+    noise = data * error_percentage * np.random.randn(*data.shape)
+    return data + noise
