@@ -19,7 +19,7 @@ def oversampling():
 
 
 def manage_null_concentration():
-    data = pd.read_excel('data/CFU per mL Analyte1_analyte2_analyte3_Sensor1_Sensor2_Sensor3.xlsx')
+    data = pd.read_excel('data/raw/CFU per mL Analyte1_analyte2_analyte3_Sensor1_Sensor2_Sensor3.xlsx')
 
     analyte_1, analyte_2, analyte_3 = slice_datasets(data)
     [analyte_1, analyte_2, analyte_3] = drop_columns([analyte_1, analyte_2, analyte_3])
@@ -37,4 +37,4 @@ def manage_null_concentration():
 if __name__ == '__main__':
     manage_null_concentration()
     print('Null concentration managed')
-    print('Data stored at - data/unsampled')
+    print('Data stored at - data/unsampled/')

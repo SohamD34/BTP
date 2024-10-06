@@ -8,7 +8,7 @@ def exponential_interpolation():
     def generate_interpolated_data(start, end, num_points):
         return np.linspace(start, end, num_points + 2)[1:-1] 
 
-    input_file = "/content/Analyte1.csv"
+    input_file = "data/unsampled/Unsampled_Analyte1.csv"
     df = pd.read_csv(input_file)
     all_interpolated_data = {col: [] for col in ['CFU/mL', 'Sensor1', 'Sensor2', 'Sensor3']}
 
@@ -21,12 +21,10 @@ def exponential_interpolation():
             all_interpolated_data[col].extend(interpolated_values)
 
     interpolated_df = pd.DataFrame(all_interpolated_data)
-    output_file = r'data/exponential/Exponential_Analyte1.csv'
-    interpolated_df.to_csv(output_file, index=False)
-    print(f"Interpolated data saved to {output_file}")
+    interpolated_df.to_csv('data/exponential/Exponential_Analyte1.csv', index=False)
 
 
-    input_file = "/content/Analyte2.csv"
+    input_file = "data/unsampled/Unsampled_Analyte2.csv"
     df = pd.read_csv(input_file)
     all_interpolated_data = {col: [] for col in ['CFU/mL', 'Sensor1', 'Sensor2', 'Sensor3']}
 
@@ -40,13 +38,11 @@ def exponential_interpolation():
 
 
     interpolated_df = pd.DataFrame(all_interpolated_data)
-    output_file = r'data/exponential/Exponential_Analyte2.csv'
-    interpolated_df.to_csv(output_file, index=False)
-    print(f"Interpolated data saved to {output_file}")
+    interpolated_df.to_csv('data/exponential/Exponential_Analyte2.csv', index=False)
 
 
 
-    input_file = "/content/Analyte3.csv"
+    input_file = "data/unsampled/Unsampled_Analyte3.csv"
     df = pd.read_csv(input_file)
     all_interpolated_data = {col: [] for col in ['CFU/mL', 'Sensor1', 'Sensor2', 'Sensor3']}
 
@@ -59,9 +55,7 @@ def exponential_interpolation():
             all_interpolated_data[col].extend(interpolated_values)
 
     interpolated_df = pd.DataFrame(all_interpolated_data)
-    output_file = r'data/exponential/Exponential_Analyte3.csv'
-    interpolated_df.to_csv(output_file, index=False)
-    print(f"Interpolated data saved to {output_file}")
+    interpolated_df.to_csv('data/exponential/Exponential_Analyte3.csv', index=False)
 
 
 
