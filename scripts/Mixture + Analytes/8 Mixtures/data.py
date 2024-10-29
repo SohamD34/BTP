@@ -2,6 +2,10 @@ import pandas as pd
 import os
 os.chdir('/home/soham/Desktop/GitHub/BTP/')
 
+all_data = pd.read_excel('data/mixture/Sensor 1_sensor 2_sensor 3_111_121_112_211.xlsx')
+all_data.head(2)
+
+
 # Mixture 1:1:1
 
 mix_111_sensor1 = pd.read_excel('data/time_data/ratio_111/Sensor 1_111.xlsx')
@@ -45,15 +49,37 @@ mix_101['Dilution'] = mix_111['Dilution']
 mix_101['Label'] = ['Mix_101' for i in range(len(mix_101))]
 mix_101 = mix_101[['Dilution','Sensor1','Sensor2','Sensor3','Label']]
 
+# Mixture 1:2:1
 
-total_new_data = pd.concat([analyte1, analyte2, analyte3, mix_111, mix_101], axis=0).reset_index(drop=True)
+mix_121 = pd.DataFrame()
+mix_121['Sensor1'] = all_data['Sensor 1_121']
+mix_121['Sensor2'] = all_data['Sensor2_121']
+mix_121['Sensor3'] = all_data['Sensor 3_121']
+mix_121['Label'] = ['Mix_121' for i in range(len(mix_121))]
+mix_121['Dilution'] = mix_101['Dilution']
+mix_121 = mix_121[['Dilution','Sensor1','Sensor2','Sensor3','Label']]
 
-total_new_data.to_csv('data/mixture/5 solutions/total_new_data(5 mixtures).csv', index=False)
-total_new_data.to_excel('data/mixture/5 solutions/total_new_data(5 mixtures).xlsx', index=False)
+# Mixture 2:1:1
 
-del analyte1, analyte2, analyte3, mix_111, mix_101, mix_111_sensor1, mix_111_sensor2, mix_111_sensor3
+mix_211 = pd.DataFrame()
+mix_211['Sensor1'] = all_data['Sensor1_ 211']
+mix_211['Sensor2'] = all_data['Sensor2_ 211']
+mix_211['Sensor3'] = all_data['Sensor3_ 211']
+mix_211['Label'] = ['Mix_211' for i in range(len(mix_211))]
+mix_211['Dilution'] = mix_101['Dilution']
+mix_211 = mix_211[['Dilution','Sensor1','Sensor2','Sensor3','Label']]
 
+# Mixture 1:1:2 
 
-#____________________________________________________________________________________________________________________________________________________________________#
-#--------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+mix_112 = pd.DataFrame()
+mix_112['Sensor1'] = all_data['Sensor1_ 112']
+mix_112['Sensor2'] = all_data['Sensor2_ 112']
+mix_112['Sensor3'] = all_data['Sensor3_ 112']
+mix_112['Label'] = ['Mix_112' for i in range(len(mix_112))]
+mix_112['Dilution'] = mix_101['Dilution']
+mix_112 = mix_112[['Dilution','Sensor1','Sensor2','Sensor3','Label']]
 
+all_data = pd.concat([analyte1, analyte2, analyte3, mix_101, mix_111, mix_112, mix_121, mix_211]).reset_index(drop=True)
+
+all_data.to_csv('data/mixture/8 solutions/total_new_data(8 mixtures).csv', index=False)
+all_data.to_excel('data/mixture/8 solutions/total_new_data(8 mixtures).xlsx', index=False)

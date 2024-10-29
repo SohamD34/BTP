@@ -34,7 +34,7 @@ def add_noise(data, labels, noise_level, target_size=350):
 
 
 
-def plot_pca_decision_boundary(pca_data, model, label_mapping):
+def plot_pca_decision_boundary(pca, pca_data, model, label_mapping):
 
     fig, ax = plt.subplots(1, 2, figsize=(15, 4))
     x_min, x_max = pca_data['PC1'].min() - 50, pca_data['PC1'].max() + 50
@@ -69,15 +69,18 @@ def plot_pca_decision_boundary(pca_data, model, label_mapping):
     ax[1].legend(handles, labels, title="Classes")
     ax[1].set_title('Predicted Class Labels and Decision Boundary')
 
+    ax[1].set_xlabel(f'PCA Component 1 ({pca.explained_variance_ratio_[0] * 100:.2f}% variance)')
+    ax[1].set_ylabel(f'PCA Component 2 ({pca.explained_variance_ratio_[1] * 100:.2f}% variance)')
+
     plt.show()
 
 
 
-def plot_lda_decision_boundary(lda_data, model, label_mapping):
+def plot_lda_decision_boundary(lda, lda_data, model, label_mapping):
 
     fig, ax = plt.subplots(1, 2, figsize=(15, 4))
-    x_min, x_max = lda_data['LD1'].min() - 5, lda_data['LD1'].max() + 5
-    y_min, y_max = lda_data['LD2'].min() - 5, lda_data['LD2'].max() + 5
+    x_min, x_max = lda_data['LD1'].min() - 1, lda_data['LD1'].max() + 1
+    y_min, y_max = lda_data['LD2'].min() - 1, lda_data['LD2'].max() + 1
     xx, yy = np.meshgrid(np.linspace(x_min, x_max, 500), np.linspace(y_min, y_max, 500))
 
     X = lda_data[['LD1','LD2']]
@@ -107,5 +110,8 @@ def plot_lda_decision_boundary(lda_data, model, label_mapping):
     labels = [label_mapping[int(re.search(r'\d+', label).group())] for label in labels]
     ax[1].legend(handles, labels, title="Classes")
     ax[1].set_title('Predicted Class Labels and Decision Boundary')
+
+    ax[1].set_xlabel(f'LD1 ({lda.explained_variance_ratio_[0] * 100:.2f}% variance)')
+    ax[1].set_ylabel(f'LD2 ({lda.explained_variance_ratio_[1] * 100:.2f}% variance)')
 
     plt.show()
