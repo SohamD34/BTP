@@ -20,8 +20,8 @@ def exponential_interpolation():
             interpolated_values = generate_interpolated_data(start, end, num_points)
             all_interpolated_data[col].extend(interpolated_values)
 
-    interpolated_df = pd.DataFrame(all_interpolated_data)
-    interpolated_df.to_csv('data/exponential/Exponential_Analyte1.csv', index=False)
+    interpolated_df1 = pd.DataFrame(all_interpolated_data)
+    interpolated_df1.to_csv('data/exponential/Exponential_Analyte1.csv', index=False)
 
 
     input_file = "data/unsampled/Unsampled_Analyte2.csv"
@@ -37,8 +37,8 @@ def exponential_interpolation():
             all_interpolated_data[col].extend(interpolated_values)
 
 
-    interpolated_df = pd.DataFrame(all_interpolated_data)
-    interpolated_df.to_csv('data/exponential/Exponential_Analyte2.csv', index=False)
+    interpolated_df2 = pd.DataFrame(all_interpolated_data)
+    interpolated_df2.to_csv('data/exponential/Exponential_Analyte2.csv', index=False)
 
 
 
@@ -54,9 +54,14 @@ def exponential_interpolation():
             interpolated_values = generate_interpolated_data(start, end, num_points)
             all_interpolated_data[col].extend(interpolated_values)
 
-    interpolated_df = pd.DataFrame(all_interpolated_data)
-    interpolated_df.to_csv('data/exponential/Exponential_Analyte3.csv', index=False)
+    interpolated_df3 = pd.DataFrame(all_interpolated_data)
+    interpolated_df3.to_csv('data/exponential/Exponential_Analyte3.csv', index=False)
 
+    interpolated_df1['Label'] = 1
+    interpolated_df2['Label'] = 2
+    interpolated_df3['Label'] = 3
+    full_expo_data = pd.concat([interpolated_df1, interpolated_df2, interpolated_df3], axis=0)
+    full_expo_data.to_csv('data/exponential/Exponential_labelled.csv', index=False)
 
 
 if __name__ == '__main__':

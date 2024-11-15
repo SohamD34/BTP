@@ -49,11 +49,16 @@ def linear_interpolation():
 
     dummy_data3 = dummy_data3.sort_values(by='CFU/mL').reset_index(drop=True)
 
-    dummy_data1.to_csv('data/sampled/Sampled_Analyte1.csv', index=False)
-    dummy_data2.to_csv('data/sampled/Sampled_Analyte2.csv', index=False)
-    dummy_data3.to_csv('data/sampled/Sampled_Analyte3.csv', index=False)
+    dummy_data1.to_csv('data/linearsampled/Sampled_Analyte1.csv', index=False)
+    dummy_data2.to_csv('data/linearsampled/Sampled_Analyte2.csv', index=False)
+    dummy_data3.to_csv('data/linearsampled/Sampled_Analyte3.csv', index=False)
 
+    dummy_data1['label'] = 1
+    dummy_data2['label'] = 2
+    dummy_data3['label'] = 3
 
+    all_data = pd.concat([dummy_data1, dummy_data2, dummy_data3], ignore_index=True)
+    all_data.to_csv('data/linearsampled/labelled.csv', index=False)
 
 if __name__ == '__main__':
     linear_interpolation()

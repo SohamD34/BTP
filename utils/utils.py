@@ -58,49 +58,25 @@ def plot_clusters(features, data, pca_features, path):
 
     plt.figure(figsize=(15, 6))
 
-    plt.subplot(1, 3, 1)
-    plt.scatter(features['Sensor1'], features['Sensor2'], c=data['Label'], cmap='viridis', marker='o', edgecolor='k')
-    plt.title('Original Data with Labels')
-    plt.xlabel('Sensor1')
-    plt.ylabel('Sensor2')
-
-    handles, labels = plt.gca().get_legend_handles_labels()
-    unique_labels = np.unique(data['Label'])
-    for i in unique_labels:
-        handles.append(plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=plt.cm.viridis(i / 2), markersize=10))
-        labels.append(f'Analyte {i}')
-
-    plt.legend(handles, labels)
-
-
-    plt.subplot(1, 3, 2)
-    plt.scatter(features['Sensor1'], features['Sensor2'], c=data['Cluster_Original'], cmap='viridis', marker='o', edgecolor='k')
-    plt.title('Original Data with KMeans Clusters')
-    plt.xlabel('Sensor1')
-    plt.ylabel('Sensor2')
-
-    handles, labels = plt.gca().get_legend_handles_labels()
-    unique_labels = np.unique(data['Cluster_Original'])
-    for i in unique_labels:
-        handles.append(plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=plt.cm.viridis(i / 2), markersize=10))
-        labels.append(f'Cluster {i}')
-
-    plt.legend(handles, labels)
-
-
-    plt.subplot(1, 3, 3)
-    plt.scatter(pca_features[:, 0], pca_features[:, 1], c=data['Cluster_PCA'], cmap='viridis', marker='o', edgecolor='k')
-    plt.title('PCA-Transformed Data with KMeans Clusters')
+    plt.subplot(1, 2, 1)
+    scatter = plt.scatter(pca_features[:, 0], pca_features[:, 1], c=data['label'], cmap='magma', marker='o', edgecolor='k', s=100)
+    plt.title('PCA Data with True Labels')
     plt.xlabel('PCA Component 1')
     plt.ylabel('PCA Component 2')
 
-    handles, labels = plt.gca().get_legend_handles_labels()
-    unique_labels = np.unique(data['Cluster_PCA'])
-    for i in unique_labels:
-        handles.append(plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=plt.cm.viridis(i / 2), markersize=10))
-        labels.append(f'Cluster {i}')
+    # Create a legend for the scatter plot
+    legend1 = plt.legend(*scatter.legend_elements(), title="Classes")
+    plt.gca().add_artist(legend1)
 
-    plt.legend(handles, labels)
+
+    plt.subplot(1, 2, 2)
+    scatter = plt.scatter(pca_features[:, 0], pca_features[:, 1], c=data['Cluster_PCA'], cmap='magma', marker='o', edgecolor='k', s=100)
+    plt.title('PCA Data with KMeans Clusters')
+    plt.xlabel('PCA Component 1')
+    plt.ylabel('PCA Component 2')
+
+    legend2 = plt.legend(*scatter.legend_elements(), title="Clusters")
+    plt.gca().add_artist(legend2)
 
     plt.savefig(path)
 
