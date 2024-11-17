@@ -83,6 +83,66 @@ def plot_clusters(features, data, pca_features, path):
     plt.show()
 
 
+def plot_dbscan_clusters(features, data, pca_features, path):
+
+    plt.figure(figsize=(15, 6))
+
+    plt.subplot(1, 2, 1)
+    scatter = plt.scatter(pca_features[:, 0], pca_features[:, 1], c=data['label'], cmap='magma', marker='o', edgecolor='k', s=100)
+    plt.title('PCA Data with True Labels')
+    plt.xlabel('PCA Component 1')
+    plt.ylabel('PCA Component 2')
+
+    # Create a legend for the scatter plot
+    legend1 = plt.legend(*scatter.legend_elements(), title="Classes")
+    plt.gca().add_artist(legend1)
+
+
+    plt.subplot(1, 2, 2)
+    scatter = plt.scatter(pca_features[:, 0], pca_features[:, 1], c=data['Cluster_PCA'], cmap='magma', marker='o', edgecolor='k', s=100)
+    plt.title('PCA Data with DBSCAN Clusters')
+    plt.xlabel('PCA Component 1')
+    plt.ylabel('PCA Component 2')
+
+    legend2 = plt.legend(*scatter.legend_elements(), title="Clusters")
+    plt.gca().add_artist(legend2)
+
+    plt.savefig(path)
+
+    plt.show()
+
+
+
+def plot_gmm_clusters(features, data, pca_features, path):
+
+    plt.figure(figsize=(15, 6))
+
+    plt.subplot(1, 2, 1)
+    scatter = plt.scatter(pca_features[:, 0], pca_features[:, 1], c=data['label'], cmap='magma', marker='o', edgecolor='k', s=100)
+    plt.title('PCA Data with True Labels')
+    plt.xlabel('PCA Component 1')
+    plt.ylabel('PCA Component 2')
+
+    # Create a legend for the scatter plot
+    legend1 = plt.legend(*scatter.legend_elements(), title="Classes")
+    plt.gca().add_artist(legend1)
+
+
+    plt.subplot(1, 2, 2)
+    scatter = plt.scatter(pca_features[:, 0], pca_features[:, 1], c=data['Cluster_PCA'], cmap='magma', marker='o', edgecolor='k', s=100)
+    plt.title('PCA Data with GMM Clusters')
+    plt.xlabel('PCA Component 1')
+    plt.ylabel('PCA Component 2')
+
+    legend2 = plt.legend(*scatter.legend_elements(), title="Clusters")
+    plt.gca().add_artist(legend2)
+
+    plt.savefig(path)
+
+    plt.show()
+
+
+
 def add_noise(data, error_percentage=0.05):
     noise = data * error_percentage * np.random.randn(*data.shape)
     return data + noise

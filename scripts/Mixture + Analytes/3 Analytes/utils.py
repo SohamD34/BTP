@@ -12,7 +12,7 @@ def add_noise(data, labels, noise_level, target_size=350):
         new_data_points = []
 
         for sensor in ['Sensor1', 'Sensor2', 'Sensor3']:
-            noise = np.random.uniform(-noise_level, noise_level, size=noisy_data.shape[0])
+            noise = np.random.uniform(-2*noise_level, 2*noise_level, size=noisy_data.shape[0])
             new_data = noisy_data[sensor] + (noisy_data[sensor] * noise)
             new_data_points.append(new_data)
 
