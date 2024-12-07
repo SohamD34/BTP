@@ -117,3 +117,54 @@ def plot_lda_decision_boundary(lda, lda_data, model, label_mapping):
 
 
     plt.show()
+
+
+
+def plot_pca_classes(pca, pca_data, labels, title, colors, label_mapping):
+    
+        fig, ax = plt.subplots(1, 2, figsize=(15, 4))
+    
+        for label in labels:
+            pca_class = pca_data[pca_data['Labels'] == label]
+            ax[0].scatter(pca_class['PC1'], pca_class['PC2'], label=label_mapping[label], color=colors[label])
+
+        ax[0].set_title(title)
+        ax[0].set_xlabel(f'PCA Component 1 ({pca.explained_variance_ratio_[0] * 100:.2f}% variance)')
+        ax[0].set_ylabel(f'PCA Component 2 ({pca.explained_variance_ratio_[1] * 100:.2f}% variance)')
+        ax[0].legend()
+
+        for label in labels:
+            pca_class = pca_data[pca_data['Labels'] == label]
+            ax[1].scatter(pca_class['PC1'], pca_class['PC2'], label=label_mapping[label], color=colors[label])
+
+        ax[1].set_title(title)
+        ax[1].set_xlabel(f'PCA Component 1 ({pca.explained_variance_ratio_[0] * 100:.2f}% variance)')
+        ax[1].set_ylabel(f'PCA Component 2 ({pca.explained_variance_ratio_[1] * 100:.2f}% variance)')
+        ax[1].legend()
+
+        plt.show()
+
+
+def plot_lda_classes(lda, lda_data, labels, title, colors, label_mapping):
+    
+        fig, ax = plt.subplots(1, 2, figsize=(15, 4))
+    
+        for label in labels:
+            lda_class = lda_data[lda_data['Labels'] == label]
+            ax[0].scatter(lda_class['LD1'], lda_class['LD2'], label=label_mapping[label], color=colors[label])
+
+        ax[0].set_title(title)
+        ax[0].set_xlabel(f'LD1 ({lda.explained_variance_ratio_[0] * 100:.2f}% variance)')
+        ax[0].set_ylabel(f'LD2 ({lda.explained_variance_ratio_[1] * 100:.2f}% variance)')
+        ax[0].legend()
+
+        for label in labels:
+            lda_class = lda_data[lda_data['Labels'] == label]
+            ax[1].scatter(lda_class['LD1'], lda_class['LD2'], label=label_mapping[label], color=colors[label])
+
+        ax[1].set_title(title)
+        ax[1].set_xlabel(f'LD1 ({lda.explained_variance_ratio_[0] * 100:.2f}% variance)')
+        ax[1].set_ylabel(f'LD2 ({lda.explained_variance_ratio_[1] * 100:.2f}% variance)')
+        ax[1].legend()
+
+        plt.show()
