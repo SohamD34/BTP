@@ -12,7 +12,7 @@ cols = ['Dil.1', 'Dil.2', 'Dil.3', 'Dil.4', 'Dil.5', 'Dil.6', 'Dil.7', 'Dil.8']
 
 dataset = []
 
-for i in range(5):
+for i in range(10):
     row = np.random.randint(0, 7)
     col = np.random.randint(1, 8)
 
